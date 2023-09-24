@@ -6,8 +6,8 @@ export default function Home() {
   return (
     <main>
       <Slider/>
-      <Featured/>
-      <Offer/>
+      {/* <Featured/> */}
+      {/* <Offer/> */}
     </main>
   )
 }
