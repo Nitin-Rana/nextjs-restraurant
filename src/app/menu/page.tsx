@@ -2,8 +2,10 @@ import { MenuType } from "@/types/types";
 import Link from "next/link";
 import React from "react";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+
 const getData = async ()=>{
-  const res = await fetch("http://localhost:3000/api/categories",{
+  const res = await fetch(`${API_BASE_URL}/api/categories`,{
     cache:"no-store"
   })
 

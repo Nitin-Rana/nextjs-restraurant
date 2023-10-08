@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import React from "react";
 import { toast } from "react-toastify";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 const OrdersPage = () => {
   const { data: session, status } = useSession();
 
@@ -20,14 +21,14 @@ const OrdersPage = () => {
   const { isLoading, error, data } = useQuery({
     queryKey: ["orders"],
     queryFn: () =>
-      fetch("http://localhost:3000/api/orders").then((res) => res.json()),
+      fetch(`${API_BASE_URL}/api/orders`).then((res) => res.json()),
   });
 
   const queryClient = useQueryClient();
 
   const mutation = useMutation({
     mutationFn: ({ id, status }: { id: string; status: string }) => {
-      return fetch(`http://localhost:3000/api/orders/${id}`, {
+      return fetch(`${API_BASE_URL}/api/orders/${id}`, {
         method:"PUT",
         headers: {
           "Content-Type": "application/json",

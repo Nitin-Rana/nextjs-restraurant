@@ -9,6 +9,8 @@ const stripePromise = loadStripe(
   process.env.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY!
 );
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+
 const PayPage = ({ params }: { params: { id: string } }) => {
   const [clientSecret, setClientSecret] = useState("");
 
@@ -18,7 +20,7 @@ const PayPage = ({ params }: { params: { id: string } }) => {
     const makeRequest = async () => {
       try {
         const res = await fetch(
-          `http://localhost:3000/api/create-intent/${id}`,
+          `${API_BASE_URL}/api/create-intent/${id}`,
           {
             method: "POST",
           }

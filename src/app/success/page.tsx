@@ -3,6 +3,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import React, { useEffect } from "react";
 import ConfettiExplosion from "react-confetti-explosion";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
 const SuccessPage = () => {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -11,7 +12,7 @@ const SuccessPage = () => {
   useEffect(() => {
     const makeRequest = async () => {
       try {
-        await fetch(`http://localhost:3000/api/confirm/${payment_intent}`, {
+        await fetch(`${API_BASE_URL}/api/confirm/${payment_intent}`, {
           method: "PUT",
         });
         setTimeout(() => {

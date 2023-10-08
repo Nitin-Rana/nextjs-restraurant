@@ -5,6 +5,8 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React, { useEffect } from "react";
 
+const API_BASE_URL = process.env.NEXT_PUBLIC_API_BASE_URL || "";
+
 const CartPage = () => {
   const { products, totalItems, totalPrice, removeFromCart } = useCartStore();
   const { data: session } = useSession();
@@ -19,7 +21,7 @@ const CartPage = () => {
       router.push("/login");
     } else {
       try {
-        const res = await fetch("http://localhost:3000/api/orders", {
+        const res = await fetch(`${API_BASE_URL}/api/orders`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
